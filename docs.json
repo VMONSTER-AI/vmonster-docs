@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Mint Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#F96815",
+    "light": "#F96815",
+    "dark": "#F96815"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -46,6 +46,7 @@
           {
             "group": "Endpoint Examples",
             "pages": [
+              "api-reference/endpoint/get",
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
