@@ -1,0 +1,26 @@
+---
+title: "New file"
+description: "Description of your new file."
+---
+
+```javascript
+const { stream_id, token, session_id } = await fetchRoomConfig();
+const room = new VmonsterRoom({
+  serverUrl: "https://api.vmonster.ai/v1/streaming",
+});
+
+room.join({
+  sessionId: session_id,
+  streamId: stream_id,
+  token: token,
+});
+
+// When joined to a room, add the AI Avatar's video.
+// It will be appended to the element with the ID "aiavatar-video-parent" or to the body.
+room.on("joined", () => {
+  room.addVideo({
+    width: "400px",
+    borderRadius: "10px",
+  });
+});
+```

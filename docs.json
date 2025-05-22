@@ -19,7 +19,7 @@
           },
           {
             "group": "Building AI Avatars",
-            "pages": ["pages/create_New_Stream", "pages/authentication"]
+            "pages": ["pages/create_New_Stream", "pages/authentication", "pages/join_Vmonster_Room"]
           },
           {
             "group": "Dive Deeper",

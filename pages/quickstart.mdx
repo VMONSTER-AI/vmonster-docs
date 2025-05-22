@@ -3,6 +3,9 @@ title: "Quickstart"
 description: "Build your AI Avatar Application in less than 10 minutes"
 ---
 
+import JoinRoomSnippet from '/snippets/join-room.mdx';
+import CreateNewStreamSnippet from '/snippets/create-new-stream.mdx';
+
 ## Overview
 
 This quickstart guide will walk you through the process of setting up, authenticating, and implementing a real-time AI Avatar application.
@@ -45,25 +48,7 @@ VMONSTER_API_KEY=your_api_key
 Create a new stream by setting your API key, AI Avatar ID, and language.
 You can explore various AI Avatars at https://app.vmonster.io/profiles.
 
-```javascript
-const fetchNewStream = async () => {
-  const formData = new FormData();
-  // Enter the ID of the AI Avatar you want to use.
-  formData.append("aiavatar_id", "b9065cba-07ba-4720-8686-69dfca10a94c");
-  // Enter the language. The accent and speech pattern will vary based on the language.
-  formData.append("language", "en");
-
-  const response = await fetch("https://api.vmonster.io/v1/streams", {
-    method: "POST",
-    headers: {
-      "x-api-key": process.env.VMONSTER_API_KEY,
-    },
-    body: formData,
-  });
-  const data = await response.json();
-  return data;
-};
-```
+<CreateNewStreamSnippet />
 
 In a production environment, call the above code from the backend. If you call it from the client side, the API key may be exposed.
 
@@ -71,27 +56,7 @@ In a production environment, call the above code from the backend. If you call i
 
 Use the created stream information to join a room.
 
-```javascript
-const { stream_id, token, session_id } = await fetchRoomConfig();
-const room = new VmonsterRoom({
-  serverUrl: "https://api.vmonster.ai/v1/streaming",
-});
-
-room.join({
-  sessionId: session_id,
-  streamId: stream_id,
-  token: token,
-});
-
-// room에 joined되었을 때, AI Avatar의 비디오를 추가합니다.
-// "aiavatar-video-parent"인 요소 또는 body에 추가됩니다.
-room.on("joined", () => {
-  room.addVideo({
-    width: "400px",
-    borderRadius: "10px",
-  });
-});
-```
+<JoinRoomSnippet />
 
 ## Explore Various AI Avatars
 
