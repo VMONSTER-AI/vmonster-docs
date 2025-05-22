@@ -19,19 +19,18 @@
           },
           {
             "group": "Building AI Avatars",
-            "pages": ["pages/create_New_Stream", "pages/authentication", "pages/join_Vmonster_Room"]
+            "pages": ["pages/create_New_Stream", "pages/authentication", "pages/join_Vmonster_Room", "pages/demo"]
           },
           {
-            "group": "Dive Deeper",
+            "group": "Dive Deep",
             "pages": [
               "pages/overview",
               "pages/vmonsterRoom",
               "pages/aiAvatar",
               "pages/states",
-              "pages/events",
               "pages/instance_Methods",
-              "pages/callback_Functions",
-              "pages/demo"
+              "pages/events",
+              "pages/callback_Functions"
             ]
           }
         ]
