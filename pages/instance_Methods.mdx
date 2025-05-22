@@ -30,29 +30,59 @@ If the method operates successfully, the `joined` event will be triggered.
 
 ```ts
 async speak(
-  text: string,
-  background: File | Blob (Optional),
-  positionX: number (Optional),
-  positionY: number (Optional),
-  scale: number (Optional),
+  config?: MessageConfig
 ): Promise<void>
 ```
 
-This method requests the AIAvatar to speak.
+This method requests the AIAvatar to speak based on the provided text or text stream. You can receive the AIAvatar's video stream data based on the input text. You can optionally configure the background, position, and scale of the AIAvatar for each request.
+It supports standard text input as well as streaming input(AsyncIterable), allowing for real-time speech generation.
 
-You can receive the AIAvatar's video stream data based on the input text.
+#### Parameters
 
-You can adjust the desired background, position, and scale with each request.
+The config parameter accepts an object of type `MessageConfig`, which is a union of the following: `TextMessageConfig` and `StreamMessageConfig`.
 
-- The AIAvatarState transitions to loading.
-- When the AIAvatar begins speaking: the `aiavatar-start-speaking` event is triggered. The AIAvatarState transitions to speaking.
-- When the AIAvatar finishes speaking: the `aiavatar-stop-speaking` event is triggered. The AIAvatarState transitions to idle.
-- The AIAvatar's speech text can be verified through the callback argument of the `aiavatar-message` event.
+```ts
+interface TextMessageConfig {
+  text: string;
+  isStream?: false;
+  background?: File | Blob | null;
+  positionX?: number | null;
+  positionY?: number | null;
+  scale?: number | null;
+}
+```
+
+```ts
+
+interface StreamMessageConfig {
+  isStream: true;
+  stream: AsyncIterable<string>;
+  background?: File | Blob | null;
+  positionX?: number | null;
+  positionY?: number | null;
+  scale?: number | null;
+}
+```
+
+When speak() is called, the following steps occur sequentially.
+
+1. The `AIAvatarState` transitions to `loading`.
+2. When the AIAvatar begins speaking:
+
+   a.  The `aiavatar-start-speaking` event is triggered.
+
+   b.  The `AIAvatarState` transitions to `speaking`.
+3. When the AIAvatar finishes speaking:
+
+   a.  The `aiavatar-stop-speaking` event is triggered.
+
+   b.  The `AIAvatarState` transitions to `idle`.
+4. The AIAvatar's speech text can be verified through the callback argument of the `aiavatar-message` event.
 
 **Error Occurrence**
 
-- The RoomState is not joined when the method is called.
-- The AIAvatarState is not idle when the method is called.
+- The `RoomState` is not `joined` when the method is called.
+- The `AIAvatarState` is not `idle` when the method is called.
 
 ---
 
@@ -69,11 +99,11 @@ You can request to when the AIAvatar is speaking.
 After the request, the speaking stops after 1 ~ 2 seconds.
 
 - the `aiavatar-stop-speaking` event is triggered.
-- The AIAvatarState transitions to idle.
+- The `AIAvatarState` transitions to idle.
 
 **Error Occurrence:**
 
-- The AIAvatarState is not speaking when the method is called.
+- The `AIAvatarState` is not speaking when the method is called.
 
 ---
 
