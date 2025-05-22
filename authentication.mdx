@@ -1,0 +1,24 @@
+To use the VMONSTER API, an authentication process must be completed.
+
+During this process, an API Key is required. After obtaining the key, follow the usage instructions below.
+
+## Usages
+
+1. Create an Enterprise account on the [VMONSTER Studio](https://app.vmonster.io) and obtain an API Key.
+
+2. Ensure that the issued API Key is not recorded in client-side web browser code and is kept confidential.
+
+3. When sending API requests, include the key in the HTTP headers using the `x-api-key` field:
+
+```js
+headers: {
+  'x-api-key': 'YOUR_API_KEY',
+}
+```
+
+## Errors
+
+- Requests made with an invalid key will result in a `403 Forbidden` error.
+- If the `x-api-key` header is missing, a `422 Unprocessable Entity` error will occur.
+
+### 여기에 api reference로 가는 링크 추가

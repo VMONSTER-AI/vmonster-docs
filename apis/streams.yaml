@@ -1,0 +1,95 @@
+openapi: 3.0.4
+info:
+  title: VMONSTER Streaming API
+  description: API for creating and managing AIAvatar streaming sessions.
+  version: 1.0.0
+servers:
+  - url: https://api-dev.vmonster.io
+    description: Production server
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /v1/streams:
+    post:
+      summary: Create a new streaming session
+      description: |
+        Create a new streaming session on VMONSTER Studio for a specified AIAvatar.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - aiavatar_id
+                - language
+              properties:
+                aiavatar_id:
+                  type: string
+                  description: |
+                    The ID of the AI Avatar registered on VMONSTER Studio.
+                language:
+                  type: string
+                  description: |
+                    The language of the AI Avatar registered on VMONSTER Studio.
+                  enum: [ko, en, ja, zh]
+                background:
+                  type: string
+                  format: binary
+                  description: |
+                    (Optional) Background image file for the streaming screen.
+                position_x:
+                  type: integer
+                  description: |
+                    (Optional) X-coordinate (0-1920) for avatar position.
+                position_y:
+                  type: integer
+                  description: |
+                    (Optional) Y-coordinate (0-1080) for avatar position.
+                scale:
+                  type: number
+                  description: |
+                    (Optional) Scale factor (0.51.0) for avatar size.
+            encoding:
+              background:
+                contentType: image/*
+
+      responses:
+        "201":
+          description: Streaming session created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                    description: Unique identifier for the current session.
+                  stream_id:
+                    type: string
+                    description: Specific stream identifier.
+                  token:
+                    type: string
+                    description: Access token for entering the created room.
+              example:
+                session_id: "5761ae64-30fd-4d1d-bab1-a15f8475e95d"
+                stream_id: "46a09b1d-bc0d-4316-b929-874fa4787cfc"
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDEyMzQtZTlmZi00Y2IyLTg3YWQtNGRlOGFhYmNkZWYxIiwibmFtZSI6IuuwlOyXkCIsImlhdCI6MTY4OTAyMzQ1NiwiZXhwIjoxNzE1NTg3NDU2fQ.dGhpcy1pc0EtcmFuZG9tLXNpZ25hdHVyZS1leGFtcGxlMTIz"
+        "422":
+          description: |
+            Invalid request parameters.
+        "500":
+          description: |
+            Internal server error.
+        "503":
+          description: |
+            Service unavailable.

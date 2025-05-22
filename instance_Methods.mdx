@@ -1,0 +1,180 @@
+---
+title: "Instance Methods"
+---
+
+The `VmonsterRoom` instance provides a variety of methods to manage and control the interactions and functionalities within the virtual space.
+
+These methods enable developers to automate tasks and enhance user engagement efficiently.
+
+The following are the instance methods.
+
+---
+
+## join()
+
+```ts
+async join(sessionId: string, streamId: string, token: string): Promise<void>
+```
+
+This method is used to connect to a `VmonsterRoom`.
+
+If the method operates successfully, the `joined` event will be triggered.
+
+**Error Occurrence**
+
+- An error will be triggered if the method is called after the `joining` or `joined` events have already occurred.
+
+---
+
+## speak()
+
+```ts
+async speak(
+  text: string,
+  background: File | Blob (Optional),
+  positionX: number (Optional),
+  positionY: number (Optional),
+  scale: number (Optional),
+): Promise<void>
+```
+
+This method requests the AIAvatar to speak.
+
+You can receive the AIAvatar's video stream data based on the input text.
+
+You can adjust the desired background, position, and scale with each request.
+
+- The AIAvatarState transitions to loading.
+- When the AIAvatar begins speaking: the `aiavatar-start-speaking` event is triggered. The AIAvatarState transitions to speaking.
+- When the AIAvatar finishes speaking: the `aiavatar-stop-speaking` event is triggered. The AIAvatarState transitions to idle.
+- The AIAvatar's speech text can be verified through the callback argument of the `aiavatar-message` event.
+
+**Error Occurrence**
+
+- The RoomState is not joined when the method is called.
+- The AIAvatarState is not idle when the method is called.
+
+---
+
+## stopSpeaking()
+
+```ts
+async speakSpeaking(): Promise<void>
+```
+
+This method is requests the AIAvatar to stop speaking
+
+You can request to when the AIAvatar is speaking.
+
+After the request, the speaking stops after 1 ~ 2 seconds.
+
+- the `aiavatar-stop-speaking` event is triggered.
+- The AIAvatarState transitions to idle.
+
+**Error Occurrence:**
+
+- The AIAvatarState is not speaking when the method is called.
+
+---
+
+## leave()
+
+```ts
+leave(): void
+```
+
+This method is used to exit the `VmonsterRoom`.
+
+Upon execution, the `left` event is triggered immediately.
+
+**Error Occurrence**
+
+- An error will be triggered if the method is called before the `joined` event has occurred.
+
+---
+
+## addVideo()
+
+```ts
+addVideo(style?: Partial<CSSStyleDeclaration>): void;
+```
+
+This method adds an AIAvatar Video Element to the DOM.
+
+It checks for the presence of a `<video>` element with the id "aiavatar-video" and adds it if it doesn't already exist.
+
+**Parent Element Determination:**
+
+- If an element with the id "aiavatar-video-parent" is found, the video element is added as a child of this element.
+- If no such element exists, the video element is added as a child of document.body.
+
+**Styling:**
+
+- If a style is provided as input, the video element is added with the specified style applied.
+- If no style is provided, the element is added with the following default styles applied.
+
+```ts
+{
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  boxSizing: "border-box",
+  aspectRatio: "calc(16 / 9)",
+}
+```
+
+---
+
+## removeVideo()
+
+```ts
+removeVideo(): void
+```
+
+This method removes the AIAvatar Video Element from the DOM.
+
+Note that even after the element is removed, the audio will continue to play.
+
+---
+
+## stt()
+
+```ts
+async stt(audioBlob: Blob, language: LanguageType): Promise<string>
+// LanguageType : "ko" | "en" | "zh" | "ja"
+```
+
+This method converts a voice Blob into text.
+
+**Error Occurrence**
+
+- An error will be triggered if the method is called before the `joined` event has occurred.
+
+---
+
+## startRecordingAudio()
+
+```ts
+startRecordingAudio(): void
+```
+
+This method initiates audio recording.
+
+**Error Occurrence:**
+
+- The browser does not support getUserMedia.
+- The browser does not support MediaRecorder.
+
+---
+
+## stopRecordingAudio()
+
+```ts
+async stopRecordingAudio(): Promise<Blob>
+```
+
+This method stops the audio recording and returns the recorded audio as a Blob.
+
+**Error Occurrence:**
+
+- An error will be triggered if the method is called when not currently recording.
