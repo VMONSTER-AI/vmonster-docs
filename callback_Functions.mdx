@@ -5,20 +5,17 @@ description: "How to use callback functions with events in VmonsterRoom."
 
 In the context of the VmonsterRoom instance, the callback function plays a vital role in responding to various Event types. Here's what you need to know about using callback functions:
 
-- <b>Event Handling</b>: The callback function is invoked when its associated
+- **Event Handling**: The callback function is invoked when its associated
   Event takes place. This enables you to execute specific logic in response to
   changes or actions within the Room.
-
-- <b>Single Listener Binding</b>: When attaching a callback function via the
+- **Single Listener Binding**: When attaching a callback function via the
   `on()` method, remember that only one listener can be attached per event type.
   If a new callback is registered for the same event, it will replace the
   previous listener.
-
-- <b>Function Parameters</b>: Depending on the event type, the callback function
+- **Function Parameters**: Depending on the event type, the callback function
   may receive parameters that provide context or data related to the event.
   Tailor your callback to handle this data appropriately.
-
-- <b>Integration with Room</b>: Utilizing the callback function allows you to
+- **Integration with Room**: Utilizing the callback function allows you to
   seamlessly integrate interactive features within the VmonsterRoom instance,
   enhancing the responsiveness of your application to User and AIAvatar actions.
 
@@ -38,11 +35,11 @@ You can only register one listener per event type. This means that if you regist
 
 The callback function you provide will be executed when the specified event occurs. It should be tailored to handle the corresponding event type effectively.
 
-| event                   | callback function type   |
-| ----------------------- | ------------------------ |
-| joined                  | () ⇒ void                |
-| joining                 | () ⇒ void                |
-| left                    | () ⇒ void                |
-| aiavatar-start-speaking | () ⇒ void                |
-| aiavatar-message        | (message: string) ⇒ void |
-| aiavatar-stop-speaking  | () ⇒ void                |
+| event                     | callback function type   |
+| ------------------------- | ------------------------ |
+| `joined`                  | () ⇒ void                |
+| `joining`                 | () ⇒ void                |
+| `left`                    | () ⇒ void                |
+| `aiavatar-start-speaking` | () ⇒ void                |
+| `aiavatar-message`        | (message: string) ⇒ void |
+| `aiavatar-stop-speaking`  | () ⇒ void                |

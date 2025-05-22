@@ -6,16 +6,36 @@ In the `VmonsterRoom`, several events of type `Event` may occur, which are essen
 
 The following are the key events:
 
-| Event                   | Description                                                                                                                   |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| joining                 | Triggering when an attempt is made to connect the AI Avatar Stream. It occurs immediately upon calling the `join()` function. |
-| joined                  | Occuring when the AI Avatar Stream connection is successfully completed.                                                      |
-| left                    | Triggering when the AI Avatar Stream connection is terminated.                                                                |
-| aiavatar-start-speaking | Triggering when the AI Avatar begins speaking. It allows you to determine whether the AI Avatar is currently speaking.        |
-| aiavatar-message        | Occuring when the AI Avatar sends a message. It enables you to review messages sent by the AI Avatar.                         |
-| aiavatar-stop-speaking  | Triggering when the AI Avatar stops speaking. It allows you to determine whether the AI Avatar is currently speaking.         |
+---
+
+<ParamField path="joining">
+  Triggering when an attempt is made to connect the AI Avatar Stream. It occurs immediately upon calling the `join()` function.
+</ParamField>
+
+<ParamField path="joined">
+  Occuring when the AI Avatar Stream connection is successfully completed.
+</ParamField>
+
+<ParamField path="left">
+  Triggering when the AI Avatar Stream connection is terminated.
+</ParamField>
+
+<ParamField path="aiavatar-start-speaking">
+  Triggering when the AI Avatar begins speaking. It allows you to determine whether the AI Avatar is currently speaking.
+</ParamField>
+
+<ParamField path="aiavatar-message">
+  Occuring when the AI Avatar sends a message. It enables you to review messages sent by the AI Avatar.
+</ParamField>
+
+<ParamField path="aiavatar-stop-speaking">
+  Triggering when the AI Avatar stops speaking. It allows you to determine whether the AI Avatar is currently speaking.
+</ParamField>
 
 ## Handling Events
 
-To attach callbacks to these events and handle them efficiently,
-please refer to the documentation for the `on()` method.
+To attach callbacks to these events, use `on()` method.
+
+<Card title="Callback Functions" icon="sparkles" href="/callback_Functions">
+  Learn about how to add callback function to Events
+</Card>
