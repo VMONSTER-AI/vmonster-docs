@@ -1,0 +1,20 @@
+---
+title: "Create New Stream"
+description: "Learn how to create a new AI Avatar stream."
+---
+
+To join **VmonsterRoom**, a new stream must be created each time. A new stream can be created by making an API call.
+
+- [Authentication](/pages/authentication)
+- Include the API key in the request headers for every API call.
+- Increase the value of real-time interaction by adjusting the desired background / position / scale.
+- After successful API request, you will receive:
+  - `session_id`: Unique identifier for the current session
+  - `stream_id`: Specific stream identifier
+  - `token`: Access token for entering the created room
+
+For detailed explanations and parameters, please refer to the API Reference.
+
+<Card title="Create a New Streaming Session" icon="signal-stream" href="/api-reference/create-a-new-streaming-session">
+  API Reference for creating new stream.
+</Card>

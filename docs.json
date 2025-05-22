@@ -15,7 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["introduction", "pages/quickstart"]
+            "pages": ["introduction", "pages/quickstart", "pages/installation"]
           },
           {
             "group": "Building AI Avatars",
