@@ -18,10 +18,6 @@
             "pages": ["introduction", "pages/quickstart"]
           },
           {
-            "group": "API Reference",
-            "openapi": "apis/streams.yaml"
-          },
-          {
             "group": "Building AI Avatars",
             "pages": ["pages/authentication"]
           },
@@ -37,6 +33,14 @@
               "pages/callback_Functions",
               "pages/demo"
             ]
+          }
+        ]
+      }, {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "API Reference",
+            "openapi": "apis/streams.yaml"
           }
         ]
       }
