@@ -15,7 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["introduction", "quickstart", "development"]
+            "pages": ["pages/introduction", "pages/quickstart", "pages/development"]
           },
           {
             "group": "API Reference",
@@ -23,19 +23,19 @@
           },
           {
             "group": "Building AI Avatars",
-            "pages": ["authentication"]
+            "pages": ["pages/authentication"]
           },
           {
             "group": "Dive Deeper",
             "pages": [
-              "overview",
-              "vmonsterRoom",
-              "aiAvatar",
-              "states",
-              "events",
-              "instance_Methods",
-              "callback_Functions",
-              "demo"
+              "pages/overview",
+              "pages/vmonsterRoom",
+              "pages/aiAvatar",
+              "pages/states",
+              "pages/events",
+              "pages/instance_Methods",
+              "pages/callback_Functions",
+              "pages/demo"
             ]
           }
         ]

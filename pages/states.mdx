@@ -1,0 +1,32 @@
+---
+title: "States"
+---
+
+In the Real-Time Streaming SDK, monitoring the state of your instances is crucial for managing and troubleshooting your streaming sessions.
+
+The SDK provides a dedicated page to check the current state of your instances, categorized into two main types: `RoomState` and `AIAvatarState`.
+
+## RoomState
+
+The Room State refers to the current status of the `VmonsterRoom` instance, which may include various operational conditions.
+
+Understanding the `VmonsterRoom` State helps you manage the live sessions effectively.
+
+| State     | Description                                                                                                                                                                     |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idle`    | This state occurs after the `VmonsterRoom` object is created and before the AIAvatar Stream connection begins. The state transitions back to idle when the `left` event occurs. |
+| `joining` | Represents the period when the AIAvatar Stream connection is initializing but not yet completed.                                                                                |
+| `joined`  | Indicates that the AIAvatar Stream connection has successfully completed.                                                                                                       |
+
+## AIAvatarState
+
+The AIAvatar State reflects the status and activity of the agent associated with the `VmonsterRoom`.
+
+As a crucial component in handling interactions.
+
+| State      | Description                                                                                                                                                                            |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `none`     | This state is present after the creation of the `VmonsterRoom` object and before the AIAvatar Stream connection is complete. The state switches to none when the `left` event happens. |
+| `idle`     | Indicates that the AIAvatar Stream connection has been completed successfully.                                                                                                         |
+| `loading`  | The state when the `speak()` function is called, preparing for speech output.                                                                                                          |
+| `speaking` | Indicates that the AIAvatar is currently speaking.                                                                                                                                     |
