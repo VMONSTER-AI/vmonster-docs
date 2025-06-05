@@ -13,12 +13,25 @@ The following are the instance methods.
 ## join()
 
 ```ts
-async join(sessionId: string, streamId: string, token: string): Promise<void>
+async join(options: JoinOptions): Promise<void>
 ```
 
 This method is used to connect to a `VmonsterRoom`.
 
 If the method operates successfully, the `joined` event will be triggered.
+
+#### Parameters
+
+The config parameter accepts an object of type `JoinOptions.`
+
+```typescript
+interface JoinOptions {
+  sessionId: string;
+  streamId: string;
+  token: string;
+  unmuteUserAudioOnJoined?: boolean; // Whether the user’s audio track should be unmuted immediately upon the "joined" event. Defaults to False.
+}
+```
 
 **Error Occurrence**
 
@@ -42,6 +55,7 @@ It supports standard text input as well as streaming input(AsyncIterable), allow
 The config parameter accepts an object of type `MessageConfig`, which is a union of the following: `TextMessageConfig` and `StreamMessageConfig`.
 
 ```ts
+// Standard text utterance
 interface TextMessageConfig {
   text: string;
   isStream?: false;
@@ -53,7 +67,7 @@ interface TextMessageConfig {
 ```
 
 ```ts
-
+// Streaming text utterance
 interface StreamMessageConfig {
   isStream: true;
   stream: AsyncIterable<string>;
@@ -167,6 +181,40 @@ Note that even after the element is removed, the audio will continue to play.
 
 ---
 
+## unmuteUserAudio()
+
+```ts
+unmuteUserAudio(): void
+```
+
+Connects the user’s audio track. STT starts immediately, and the `stt-start` event is triggered.
+
+---
+
+## muteUserAudio()
+
+```ts
+muteUserAudio(): void
+```
+
+This method mutes the user’s audio track. The `stt-stop` event is triggered.
+
+The track remains connected, so STT can resume with minimal delay when the audio is unmuted again.
+
+---
+
+## unPublishUserAudio()
+
+```ts
+unmuteUserAudio(): void
+```
+
+This method unpublishes the user’s audio track. The `stt-stop` event is triggered.
+
+The track is disconnected, and STT can be restarted by `unmuteUserAudio()`.
+
+---
+
 ## stt()
 
 ```ts
@@ -175,6 +223,8 @@ async stt(audioBlob: Blob, language: LanguageType): Promise<string>
 ```
 
 This method converts a voice Blob into text.
+
+This converts audio to text in a **non-real-time manner**, separately from the user’s audio track connection.
 
 **Error Occurrence**
 
@@ -188,7 +238,7 @@ This method converts a voice Blob into text.
 startRecordingAudio(): void
 ```
 
-This method initiates audio recording.
+This method initiates audio recording using navigator.mediaDevices.getUserMedia. Use this when calling the non-real-time stt() method.
 
 **Error Occurrence:**
 
@@ -203,8 +253,10 @@ This method initiates audio recording.
 async stopRecordingAudio(): Promise<Blob>
 ```
 
-This method stops the audio recording and returns the recorded audio as a Blob.
+This method stops the audio recording and returns the recorded audio as a Blob. Use this when calling the non-real-time stt() method.
 
 **Error Occurrence:**
 
 - An error will be triggered if the method is called when not currently recording.
+
+---

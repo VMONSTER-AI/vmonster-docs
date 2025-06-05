@@ -31,11 +31,44 @@ The following are the key events:
 <ParamField path="aiavatar-stop-speaking">
   Triggering when the AI Avatar stops speaking. It allows you to determine whether the AI Avatar is currently speaking.
 </ParamField>
+
 <ParamField path="aiavatar-video-track">
   Triggering when the AI Avatar video track connected. Video MediaStream is passed to the callback.
 </ParamField>
+
 <ParamField path="aiavatar-audio-track">
   Triggering when the AI Avatar audio track connected. Audio MediaStream is passed to the callback.
+</ParamField>
+
+<ParamField path="stt-data" body="aa">
+  Triggered repeatedly while the user’s audio is unmuted and they are speaking. It sends speech-to-text (STT) results one by one to the callback as STTData.
+
+  ```typescript
+  type STTDataEventType = "final" | "interim" | "interim_revert";
+  type STTData = {
+    text: string; // contains STT text.
+    eventType: STTDataEventType;
+    type: "stt-data";
+  };
+  ```
+
+  `STTDataEventType`
+
+  - `“final”` – The user has finished speaking. This is the final result and it will not change anymore.
+  - `“interim”` – The user is still speaking. This is a temporary result that may change until the user finishes.
+  - `“interim-revert”` – The previous “interim” result was wrong, so it has been cancelled or replaced.
+</ParamField>
+
+<ParamField path="stt-start">
+   Triggered when STT begins as the user’s audio is unmuted.
+</ParamField>
+
+<ParamField path="stt-stop">
+  Triggered when STT stops because the user’s audio is muted or unpublished.
+</ParamField>
+
+<ParamField path="stt-error">
+  Occurs when real-time STT cannot be performed successfully.
 </ParamField>
 
 ## Handling Events

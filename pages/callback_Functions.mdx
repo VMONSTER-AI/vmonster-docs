@@ -35,11 +35,15 @@ You can only register one listener per event type. This means that if you regist
 
 The callback function you provide will be executed when the specified event occurs. It should be tailored to handle the corresponding event type effectively.
 
-| event                     | callback function type   |
-| ------------------------- | ------------------------ |
-| `joined`                  | () ⇒ void                |
-| `joining`                 | () ⇒ void                |
-| `left`                    | () ⇒ void                |
-| `aiavatar-start-speaking` | () ⇒ void                |
-| `aiavatar-message`        | (message: string) ⇒ void |
-| `aiavatar-stop-speaking`  | () ⇒ void                |
+| event                     | callback function type    |
+| ------------------------- | ------------------------- |
+| `joined`                  | () ⇒ void                 |
+| `joining`                 | () ⇒ void                 |
+| `left`                    | () ⇒ void                 |
+| `aiavatar-start-speaking` | () ⇒ void                 |
+| `aiavatar-message`        | (message: string) ⇒ void  |
+| `aiavatar-stop-speaking`  | () ⇒ void                 |
+| `stt-data`                | (sttData: STTData) ⇒ void |
+| `stt-start`               | () ⇒ void                 |
+| `stt-stop`                | () ⇒ void                 |
+| `stt-error`               | (error: any) ⇒ void       |
