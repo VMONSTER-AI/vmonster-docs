@@ -1,7 +1,7 @@
 openapi: 3.0.4
 info:
   title: VMONSTER Streaming API
-  description: API for creating and managing AIAvatar streaming sessions.
+  description: API for creating and managing AI Avatar streaming sessions.
   version: 1.0.0
 servers:
   - url: https://api-dev.vmonster.io
@@ -22,7 +22,7 @@ paths:
     post:
       summary: Create a new streaming session
       description: |
-        Create a new streaming session on VMONSTER Studio for a specified AIAvatar.
+        Create a new streaming session on VMONSTER Studio for a specified AI Avatar.
       requestBody:
         required: true
         content:

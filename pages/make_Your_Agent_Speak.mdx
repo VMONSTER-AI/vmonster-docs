@@ -1,0 +1,35 @@
+---
+title: "AI Avatar Speech"
+sidebarTitle: "AI Avatar Speech"
+description: "Speech capabilities for Vmonster AI Avatars."
+---
+
+## [speak()](/pages/instance_Methods#speak)
+
+To have the AI Avatar speak a message, use [`speak()`](/pages/instance_Methods#speak). This triggers the synthesize of speech video.
+
+### Text Input
+
+```typescript
+room.speak({ text: "Hello. How can I assist you today?" });
+```
+
+### Streaming Input
+
+In addition to standard text input, streaming input via an AsyncIterable is supported.
+
+```typescript
+// your AsyncIterable
+const textStream = getAsyncIterable(response);
+
+await room.speak({
+  isStream: true,
+  stream: textStream,
+});
+```
+
+To learn more and see full feature, see the following topics:
+
+<Card title="speak()" icon="signal-stream" href="/pages/instance_Methods#speak">
+  Reference for instance method speak().
+</Card>

@@ -1,0 +1,102 @@
+---
+title: "Speech-to-text (STT)"
+sidebarTitle: "Overview"
+description: "Learn how to transribe user audio.(STT, Speech-to-text)"
+---
+
+Speech-to-text (STT) is a technology that converts audio input into text. It allows users to interact with AI Agents using their voice.
+
+## How to use
+
+There are two ways to use the speech-to-text feature:
+
+- **Real-time STT**: Transcribes incoming audio tracks in real-time. Ideal when low-latency feedback is important.
+- **Non-real-time STT**: Transcribes audio blobs. Suitable when you already have a user audio recording implementation.
+
+## Real-time STT
+
+As a recommended approach, it connects to the user’s audio track and streams the transcription result in real time.
+
+#### Configuration
+
+You can configure STT options in the config when calling join(). You may explicitly specify a language or enable automatic language detection. Specifying a language improves transcription accuracy. (link) If no language is specified, STT runs in the same language as the AI Avatar.
+
+```typescript
+await room.join({
+  sessionId: "your-session-id",
+  streamId: "your-stream-id",
+  token: "your-token",
+  config: {
+    stt: {
+      language: "ko",
+    },
+    unmuteUserAudioOnJoined: true,
+  },
+});
+```
+
+With this configuration, STT will automatically start when the `joined` event is triggered.
+
+#### Start transcription
+
+```typescript
+room.unmuteUserAudio(); // publish user audio track and unmute
+```
+
+Unmutes the user’s audio. If the track is already published, it resumes sending audio data. If it is not published, it publishes the track and starts transmitting data.
+
+#### Stop transcription
+
+```typescript
+room.muteUserAudio(); // mute user audio track
+room.unpublishUserAudio(); // unpublish user audio track
+```
+
+Both methods stop STT.
+The difference is that unpublishUserAudio() disconnects the audio track entirely, while `muteUserAudio()` keeps the track published but stops sending audio data.
+
+To resume STT, use `unmuteUserAudio()`.
+If you stopped STT using `muteUserAudio()`, it can resume more quickly, so this is the recommended approach.
+
+#### Transcription results
+
+Transcription results are delivered via events.
+
+```typescript
+room.on("stt-data", (data) => {
+  const { type, text, eventType } = data;
+  console.log(data);
+});
+room.on("stt-error", () => {});
+```
+
+By default, transcription uses the same language as the agent.
+If you’d like to detect the spoken language automatically, you can configure that when joining the room.(link)
+
+## Non-real-time STT
+
+Converts a recorded audio blob into text.
+
+```typescript
+const blob = await room.stopRecordingAudio();
+const text = await room.stt(blob, "ko");
+```
+
+To learn more and see full feature, see the following topics:
+
+<CardGroup cols="2">
+  <Card
+    title="STT Instance methods"
+    icon="signal-stream"
+    href="/pages/instance_Methods#unmuteuseraudio"
+  >
+    Reference for STT instance methods.
+  </Card>
+  <Card
+    title="STT Events"
+    icon="signal-stream"
+    href="/pages/events#param-stt-data"
+  >
+    Reference for STT Events.
+  </Card>
+</CardGroup>

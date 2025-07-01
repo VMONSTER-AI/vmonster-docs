@@ -19,12 +19,22 @@
           },
           {
             "group": "Building AI Avatars",
-            "pages": ["pages/create_New_Stream", "pages/authentication", "pages/join_Vmonster_Room", "pages/stt", "pages/demo"]
+            "pages": [
+              "pages/create_New_Stream",
+              "pages/join_Vmonster_Room",
+              "pages/make_Your_Agent_Speak",
+              {
+                "group": "Speech-to-text (STT)",
+                "pages": ["pages/transcribe_User_Audio"]
+              },
+              "pages/demo"
+            ]
           },
           {
             "group": "Dive Deep",
             "pages": [
               "pages/overview",
+              "pages/authentication",
               "pages/vmonsterRoom",
               "pages/aiAvatar",
               "pages/states",
@@ -34,7 +44,8 @@
             ]
           }
         ]
-      }, {
+      },
+      {
         "tab": "API Reference",
         "groups": [
           {

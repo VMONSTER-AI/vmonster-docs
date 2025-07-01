@@ -47,7 +47,7 @@ async speak(
 ): Promise<void>
 ```
 
-This method requests the AIAvatar to speak based on the provided text or text stream. You can receive the AIAvatar's video stream data based on the input text. You can optionally configure the background, position, and scale of the AIAvatar for each request.
+This method requests the AI Avatar to speak based on the provided text or text stream. You can receive the AI Avatar's video stream data based on the input text. You can optionally configure the background, position, and scale of the AI Avatar for each request.
 It supports standard text input as well as streaming input(AsyncIterable), allowing for real-time speech generation.
 
 #### Parameters
@@ -83,14 +83,16 @@ When speak() is called, the following steps occur sequentially.
 1. The `AIAvatarState` transitions to `loading`.
 2. When the AIAvatar begins speaking:
 
-   a.  The `aiavatar-start-speaking` event is triggered.
+   a. The `aiavatar-start-speaking` event is triggered.
 
-   b.  The `AIAvatarState` transitions to `speaking`.
-3. When the AIAvatar finishes speaking:
+   b. The `AIAvatarState` transitions to `speaking`.
 
-   a.  The `aiavatar-stop-speaking` event is triggered.
+3. When the AI Avatar finishes speaking:
 
-   b.  The `AIAvatarState` transitions to `idle`.
+   a. The `aiavatar-stop-speaking` event is triggered.
+
+   b. The `AIAvatarState` transitions to `idle`.
+
 4. The AIAvatar's speech text can be verified through the callback argument of the `aiavatar-message` event.
 
 **Error Occurrence**
@@ -106,9 +108,9 @@ When speak() is called, the following steps occur sequentially.
 async stopSpeaking(): Promise<void>
 ```
 
-This method is requests the AIAvatar to stop speaking
+This method is requests the AI Avatar to stop speaking
 
-You can request to when the AIAvatar is speaking.
+You can request to when the AI Avatar is speaking.
 
 After the request, the speaking stops after 1 ~ 2 seconds.
 
@@ -143,7 +145,7 @@ Upon execution, the `left` event is triggered immediately.
 addVideo(style?: Partial<CSSStyleDeclaration>): void;
 ```
 
-This method adds an AIAvatar Video Element to the DOM.
+This method adds an AI Avatar Video Element to the DOM.
 
 It checks for the presence of a `<video>` element with the id "aiavatar-video" and adds it if it doesn't already exist.
 
@@ -205,7 +207,7 @@ The track remains connected, so STT can resume with minimal delay when the audio
 unmuteUserAudio(): void
 ```
 
-This method unpublishes the user’s audio track. The `stt-stop` event is triggered.
+This method unpublishes the user’s audio track.
 
 The track is disconnected, and STT can be restarted by `unmuteUserAudio()`.
 
