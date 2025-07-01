@@ -29,7 +29,7 @@ interface JoinOptions {
   sessionId: string;
   streamId: string;
   token: string;
-  unmuteUserAudioOnJoined?: boolean; // Whether the user’s audio track should be unmuted immediately upon the "joined" event. Defaults to False.
+  config?: SessionConfig;
 }
 ```
 
@@ -187,13 +187,7 @@ Note that even after the element is removed, the audio will continue to play.
 unmuteUserAudio(): void
 ```
 
-Connects the user’s audio track. STT starts immediately, and the `stt-start` event is triggered.
-
-**Error Occurrence**
-
-- An error will be triggered if the method is called while STT is already in progress.
-
----
+Connects the user’s audio track. STT starts immediately.
 
 ## muteUserAudio()
 
@@ -201,15 +195,9 @@ Connects the user’s audio track. STT starts immediately, and the `stt-start` e
 muteUserAudio(): void
 ```
 
-This method mutes the user’s audio track. The `stt-stop` event is triggered.
+This method mutes the user’s audio track.
 
 The track remains connected, so STT can resume with minimal delay when the audio is unmuted again.
-
-**Error Occurrence**
-
-- An error will be triggered if the method is called while STT is not in progress.
-
----
 
 ## unPublishUserAudio()
 
@@ -220,10 +208,6 @@ unmuteUserAudio(): void
 This method unpublishes the user’s audio track. The `stt-stop` event is triggered.
 
 The track is disconnected, and STT can be restarted by `unmuteUserAudio()`.
-
-**Error Occurrence**
-
-- An error will be triggered if the method is called when the user’s audio is not published.
 
 ---
 

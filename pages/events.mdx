@@ -44,9 +44,9 @@ The following are the key events:
   Triggered repeatedly while the user’s audio is unmuted and they are speaking. It sends speech-to-text (STT) results one by one to the callback as STTData.
 
   ```typescript
-  type STTDataEventType = "final" | "interim" | "interim_revert";
+  type STTDataEventType = "transcript" | "start_of_speech" | "end_of_speech";
   type STTData = {
-    text: string; // contains STT text.
+    text: string; // contains transcription text.
     eventType: STTDataEventType;
     type: "stt-data";
   };
@@ -54,17 +54,9 @@ The following are the key events:
 
   `STTDataEventType`
 
-  - `“final”` – The user has finished speaking. This is the final result and it will not change anymore.
-  - `“interim”` – The user is still speaking. This is a temporary result that may change until the user finishes.
-  - `“interim-revert”` – The previous “interim” result was wrong, so it has been cancelled or replaced.
-</ParamField>
-
-<ParamField path="stt-start">
-   Triggered when STT begins as the user’s audio is unmuted.
-</ParamField>
-
-<ParamField path="stt-stop">
-  Triggered when STT stops because the user’s audio is muted or unpublished.
+  - `“transcript”` – The finalized transcription of the user’s speech audio.
+  - `“start_of_speech”` – Indicates the start of the user speaking. This means the Voice Activity Detection (VAD) system has detected the beginning of human speech.
+  - `“end_of_speech”` - Indicates the end of the user speaking. This means the Voice Activity Detection (VAD) system has detected the cessation of human speech.
 </ParamField>
 
 <ParamField path="stt-error">
