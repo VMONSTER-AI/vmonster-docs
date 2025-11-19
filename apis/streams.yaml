@@ -42,11 +42,15 @@ paths:
                   description: |
                     The language of the AI Avatar registered on VMONSTER Studio.
                   enum: [ko, en, ja, zh]
+                max_duration_s:
+                  type: integer
+                  description: |
+                    (Optional) Maximum session duration in seconds. Default is 3600 seconds (1 hour) if not specified.
                 background:
                   type: string
                   format: binary
                   description: |
-                    (Optional) Background image file for the streaming screen.
+                    (Optional) Background image file for the streaming screen. Note: This setting will be ignored if the AI Avatar already has a background.
                 position_x:
                   type: integer
                   description: |

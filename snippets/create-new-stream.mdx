@@ -1,8 +1,7 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "New file"
+description: "Description of your new file."
 ---
-
 
 ```javascript
 const fetchNewStream = async () => {
@@ -11,6 +10,8 @@ const fetchNewStream = async () => {
   formData.append("aiavatar_id", "b9065cba-07ba-4720-8686-69dfca10a94c");
   // Enter the language. The accent and speech pattern will vary based on the language.
   formData.append("language", "en");
+  // [Optional] Set the session duration in seconds. Default is 3600 seconds (1 hour) if not specified.
+  formData.append("max_duration_s", 300);
 
   const response = await fetch("https://api.vmonster.io/v1/streams", {
     method: "POST",
