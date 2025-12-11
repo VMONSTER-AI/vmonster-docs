@@ -4,7 +4,7 @@ info:
   description: API for creating and managing AI Avatar streaming sessions.
   version: 1.0.0
 servers:
-  - url: https://api-dev.vmonster.io
+  - url: https://api.vmonster.io
     description: Production server
 
 components:
